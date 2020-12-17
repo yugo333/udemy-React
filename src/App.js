@@ -1,58 +1,34 @@
 // import { render } from "@testing-library/react";
 
-import { Component } from "react";
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <h1>
-//         <code>src/App.js</code>マンマンママンマンマ
-//       </h1>
-//       <div className='VVVV'>DIVDIV</div>
-//       <input type="text" onClick={()=> {alert('まんままんま')}}/>
-//       {/* 下記はdivタグがないとエラーになる。制約状一つに纏めないと動かない(labelはinputなどとセットで扱うため) */}
-//     <div>
-//     <label htmlFor="bar">bar</label>
-//       <input type="text" onChange={()=> {alert('まんままんま')}}/>
-//     </div>
-//     {/* 上記では、一つに纏めないと出力できないのでdivを入れたが、divタグがブラウザーに表示されてしまう。それをしたくないときdivが嫌な時は下記 */}
-//     {/* <React.Fragment> これを使うが<></>空白タグでも同じことが起きる*/}
-//     <>
-//     <label htmlFor="bar">bar</label>
-//       <input type="text" onChange={()=> {alert('まんままんま')}}/>
-//     </>
-//     {/* </React.Fragment> */}
-//     </div>
-//   );
-// }
-
 //関数コンポーネント
 
 const App=()=>{
+  // ここで配列を指定しreturn内でmapで一つ一つ呼び出す
+  const profiles=[
+    {name:"taro",age:"28"},
+    {name:"hana",age:"18"},
+    {name:"NNNN"}
+  ]
   return(
     <>
-    <Cat/>
-    <Cat/>
-    <Cat/>
-    <Cat/>
-    <Cat/>
+    {/* 波カッコ{}で囲わないとscriptかけない。profileの値を引用しmapで回しUser関数に渡す。keyとindexはエラー回避の為 */}
+    {
+    profiles.map((profile,index)=>{
+    return <User name={profile.name} age={profile.age} key={index}/>
+    })
+  }
+  {/* 下記の書き方か上記の書き方 */}
+  {/* <User name={"taro"} age={"28"}/> */}
     </>
   )
 }
-const Cat =()=>{
-  return <div>MEEEEEEEEEEE!!!</div>
+const User =(props)=>{
+  return <div>HI i'm {props.name},and {props.age}years old</div>
 }
-// class コンポーネント
-// class App extends Component{
-//   render(){
-//     return(
-//       <>
-//       <div className='VVVV'>DIVDIVまんままんま</div>
-//       <input type="text" onClick={()=> {alert('まんままんま')}}/>
-//       </>
-//     )
-//   }
-// }
+// default値を作ってあげる事で未設定でもレンダーできる
+User.defaultProps={
+  age:1
+}
 
 
 export default App;
