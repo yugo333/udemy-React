@@ -1,4 +1,5 @@
 import React ,{Component} from 'react'
+//yarn add redux react-redux リダックスをインストールする
 
 //関数コンポーネント
 const App=()=>(<Counter></Counter>)
