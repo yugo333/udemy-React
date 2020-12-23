@@ -1,42 +1,33 @@
-// import { render } from "@testing-library/react";
-import PropTypes from 'prop-types'
+import React ,{Component} from 'react'
 
 //関数コンポーネント
-
-const App=()=>{
-  // ここで配列を指定しreturn内でmapで一つ一つ呼び出す
-  const profiles=[
-    {name:"taro",age:28},
-    {name:"hana",age:18},
-    {name:"NNNN"}
-  ]
-  return(
-    <>
-    {/* 波カッコ{}で囲わないとscriptかけない。profileの値を引用しmapで回しUser関数に渡す。keyとindexはエラー回避の為 */}
-    {
-    profiles.map((profile,index)=>{
-    return <User name={profile.name} age={profile.age} key={index}/>
-    })
+const App=()=>(<Counter></Counter>)
+//classコンポーネントでstateを使用
+class Counter extends Component {
+  constructor(props){
+    super(props)
+    this.state= {count:0}
   }
-  {/* 下記の書き方か上記の書き方 */}
-  {/* <User name={"taro"} age={"28"}/> */}
-    </>
-  )
+
+  handlePlusButton=()=>{
+    // const currentCount= this.state.count
+    // stateを更新setStateを使うと値が更新されるたびrenderされる
+    this.setState({count: this.state.count +1})
+  }
+  handleMinusButton=()=>{
+    this.setState({count: this.state.count -1})
+  }
+
+  render(){
+    return (
+      <>
+        <div> count:{this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </>
+    )
+  }
 }
-const User =(props)=>{
-  return <div>HI i'm {props.name},and {props.age}years old</div>
-}
-// 型定義propTypesを使う
-User.propTypes={
-  name: PropTypes.string,
-  age: PropTypes.number
-  // .isRequired を末尾につけることにより必ずageの設定をしてなくてはならないってことになる
-  // age:PropTypes.number.isRequired
-}
-// default値を作ってあげる事で未設定でもレンダーできる
-// User.defaultProps={
-//   age:1
-// }
 
 
 export default App;
