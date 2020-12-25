@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { count } from "./count";
+import count from "./count";
 
 export default combineReducers({ count });
-// export default combineReducers({foo,bar,baz}) //複数の場合
+// export default combineReducers({foo,bar,baz})
